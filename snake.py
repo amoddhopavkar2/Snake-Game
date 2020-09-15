@@ -116,6 +116,12 @@ class snake(object):
 		self.body[-1].dir_x = dx
 		self.body[-1].dir_y = dy
 
-	
+
+	def draw(self, surface):
+		for i, c in enumerate(self.body):
+			if i == 0:
+				c.draw(surface, True)
+			else:
+				c.draw(surface)
 
 
