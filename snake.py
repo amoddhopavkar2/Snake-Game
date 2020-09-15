@@ -163,3 +163,35 @@ def message_box(subject, content):
 
 
 def main():
+	global width, rows, s, snack
+	width = 500
+	rows = 20
+	win = pygame.display.set_mode((width, width))
+	s = snake((255, 0, 0), (10, 10))
+	snack = cube(randomSnack(rows, s), color = (0, 255, 0))
+	flag = True
+	clock = pygame.time.Clock()
+
+	high_score = 0
+	while flag:
+		pygame.time.delay(50)
+		clock.tick(10)
+		s.move()
+		if s.body[0].pos == snack.pos:
+			s.addCube()
+			snack = cube(randomSnack(rows, s), color = (0, 255, 0))
+
+		for x in range(len(s.body)):
+			if s.body[x].pos in list(map(lambda z: z.pos, s.body[x+1:])):
+				print("\nScore: ", len(s.body))
+				if len(s.body) > high_score:
+					high_score = s.body
+					print("\nNew High Score!!")
+				message_box("\nYou Lost!", "Play again...")
+				s.reset((10, 10))
+				break
+
+		redrawWindow(win)
+	pass
+
+
