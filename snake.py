@@ -125,3 +125,27 @@ class snake(object):
 				c.draw(surface)
 
 
+def redrawWindow(surface):
+	global rows, width, s, snack
+	surface.fill((0, 0, 0))
+	s.draw(surface)
+	snack.draw(surface)
+	drawGrid(width, rows, surface)
+	pygame.display.update()
+
+
+def randomSnack(rows, items):
+	positions = item.body
+
+	while True:
+		x = random.randomrange(rows)
+		y = random.randomrange(rows)
+
+		if len(list(filter(lambda z: z.pos == (x, y), positions))) > 0:
+			continue
+		else:
+			break
+
+	return (x, y)
+
+
