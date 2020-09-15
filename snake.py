@@ -97,3 +97,25 @@ class snake(object):
 					c.move(c.dir_x, c.dir_y)
 
 
+	def addCube(self):
+		tail = self.body[-1]
+		dx, dy = tail.dir_x, tail.dir_y
+
+		if dx == 1 and dy == 0:
+			self.body.append(cube((tail.pos[0] - 1, tail.pos[1])))
+
+		elif dx == -1 and dy == 0:
+			self.body.append(cube((tail.pos[0] + 1, tail.pos[1])))
+
+		elif dx == 0 and dy == 1:
+			self.body.append(cube((tail.pos[0], tail.pos[1] - 1)))
+
+		elif dx == 0 and dy == -1:
+			self.body.append(cube((tail.pos[0], tail.pos[1] + 1)))
+
+		self.body[-1].dir_x = dx
+		self.body[-1].dir_y = dy
+
+	
+
+
